@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+    <string name="edittext_hint"><font size="15">Enter your weight \n in Kilogram</font></string>
+    <string name="edittext_hint_height"><font size="15">Enter your height \n in Centimeter</font></string>
+    <string name="edittext_hint_age"><font size="15">Enter your \n Age</font></string>
+</resources>
