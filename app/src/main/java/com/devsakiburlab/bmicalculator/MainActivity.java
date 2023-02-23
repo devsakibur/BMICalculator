@@ -34,14 +34,54 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-            constantValue = 100;
+        constantValue = 100;
 
         String a =  binding.enterWeight.getText().toString();
         String b =  binding.enterHeight.getText().toString();
 
-        if(a.length() > 6 || b.length() > 7){
-            Toast.makeText(MainActivity.this, "Use Valid Number", Toast.LENGTH_SHORT).show();
-        }
+        binding.enterHeight.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if(s.toString().length()> 6){
+                    Toast.makeText(MainActivity.this, "Use Valid Number", Toast.LENGTH_SHORT).show();
+                    binding.enterHeight.setText("");
+                }
+
+            }
+        });
+        binding.enterWeight.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if(s.toString().length()> 7){
+                    Toast.makeText(MainActivity.this, "Use Valid Number", Toast.LENGTH_SHORT).show();
+                    binding.enterWeight.setText("");
+                }
+
+            }
+        });
+
 
 
 
@@ -49,48 +89,48 @@ public class MainActivity extends AppCompatActivity {
         binding.calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              String x =  binding.enterWeight.getText().toString();
-              String y =  binding.enterHeight.getText().toString();
+                String x =  binding.enterWeight.getText().toString();
+                String y =  binding.enterHeight.getText().toString();
 
-              float in1 = Float.parseFloat(x);
-              float in2 = Float.parseFloat(y);
-              float in3 = in2 / constantValue;
-              float  inResult = in3 * in3;
+                float in1 = Float.parseFloat(x);
+                float in2 = Float.parseFloat(y);
+                float in3 = in2 / constantValue;
+                float  inResult = in3 * in3;
 
-              float result = in1 / inResult;
-              String finalResult = String.format("%.2f" ,result);
+                float result = in1 / inResult;
+                String finalResult = String.format("%.2f" ,result);
 
-              if(finalResult.length() >5){
-                  Toast.makeText(MainActivity.this, "Use Valid Number", Toast.LENGTH_SHORT).show();
-              }else{
-                  binding.bmiDisplay.setText(finalResult);
-                  binding.inputLayout.setVisibility(View.INVISIBLE);
-                  binding.resultDisplay.setVisibility(View.VISIBLE);
-                  if(Float.parseFloat(finalResult) <= 18.4){
-                     binding.bmiAddDisplay.setText("Underweight");
-                     binding.bmiAdvice.setText(under);
-                  }else if(Float.parseFloat(finalResult) > 18.4 && Float.parseFloat(finalResult) <= 24.9){
-                      binding.bmiAddDisplay.setText("Normal range");
-                      binding.bmiAdvice.setText(normal);
-                  }else if(Float.parseFloat(finalResult) > 24.9 && Float.parseFloat(finalResult) <= 29.9){
-                      binding.bmiAddDisplay.setText("Overweight (Pre-obese)");
-                      binding.bmiAdvice.setText(over);
-                  }else if(Float.parseFloat(finalResult) > 29.9 && Float.parseFloat(finalResult) <= 34.9){
-                      binding.bmiAddDisplay.setText("Obese (Class I)");
-                      binding.bmiAdvice.setText(overOne);
-                  }else if(Float.parseFloat(finalResult) > 34.9 && Float.parseFloat(finalResult) <= 39.9){
-                      binding.bmiAddDisplay.setText("Obese (Class II)");
-                      binding.bmiAdvice.setText(overTwo);
-                  }else if(Float.parseFloat(finalResult) > 39.9){
-                      binding.bmiAddDisplay.setText( "Obese (Class III)");
-                      binding.bmiAdvice.setText(overThree);
-                  }
-
-
+                if(finalResult.length() >5){
+                    Toast.makeText(MainActivity.this, "Use Valid Number", Toast.LENGTH_SHORT).show();
+                }else{
+                    binding.bmiDisplay.setText(finalResult);
+                    binding.inputLayout.setVisibility(View.INVISIBLE);
+                    binding.resultDisplay.setVisibility(View.VISIBLE);
+                    if(Float.parseFloat(finalResult) <= 18.4){
+                        binding.bmiAddDisplay.setText("Underweight");
+                        binding.bmiAdvice.setText(under);
+                    }else if(Float.parseFloat(finalResult) > 18.4 && Float.parseFloat(finalResult) <= 24.9){
+                        binding.bmiAddDisplay.setText("Normal range");
+                        binding.bmiAdvice.setText(normal);
+                    }else if(Float.parseFloat(finalResult) > 24.9 && Float.parseFloat(finalResult) <= 29.9){
+                        binding.bmiAddDisplay.setText("Overweight (Pre-obese)");
+                        binding.bmiAdvice.setText(over);
+                    }else if(Float.parseFloat(finalResult) > 29.9 && Float.parseFloat(finalResult) <= 34.9){
+                        binding.bmiAddDisplay.setText("Obese (Class I)");
+                        binding.bmiAdvice.setText(overOne);
+                    }else if(Float.parseFloat(finalResult) > 34.9 && Float.parseFloat(finalResult) <= 39.9){
+                        binding.bmiAddDisplay.setText("Obese (Class II)");
+                        binding.bmiAdvice.setText(overTwo);
+                    }else if(Float.parseFloat(finalResult) > 39.9){
+                        binding.bmiAddDisplay.setText( "Obese (Class III)");
+                        binding.bmiAdvice.setText(overThree);
+                    }
 
 
 
-              }
+
+
+                }
 
 
 
